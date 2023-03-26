@@ -18,9 +18,13 @@ public class BunTest {
     @Parameterized.Parameters(name = "Название булочки: {0}, Цена булочки: {1}")
     public static Object[][] getData() {
         return new Object[][]{
-                {"black bun", 100},
-                {"white bun", 200},
-                {"red bun", 300}
+                {"Правильная", 150F},
+                {"Съедобная", Float.MAX_VALUE},
+                {"Негативная", -150F},
+                {"Бесплатная", 0F},
+                {"", 150F},
+                {"        ", 150F},
+                {"!@#$%^&*()", 150F}
         };
     }
     @Before
@@ -29,10 +33,10 @@ public class BunTest {
     }
     @Test
     public void correctNameBun() {
-        Assert.assertEquals("Неправильное название булочки", name, bun.getName());
+        Assert.assertEquals("Название булочки такое же, как при создании", name, bun.getName());
     }
     @Test
     public void correctPriceBun() {
-        Assert.assertEquals("Неправильная цена булочки", price, bun.getPrice(), 0.0f);
+        Assert.assertEquals("Цена булочки совпадает до полутысячных", price, bun.getPrice(), 0.005);
     }
 }
